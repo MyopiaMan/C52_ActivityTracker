@@ -1,9 +1,96 @@
 package by.paliakou.c52_activitytracker.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import by.paliakou.c52_activitytracker.entity.ActivityEvent;
+import by.paliakou.c52_activitytracker.entity.TypeOfActivity;
+import by.paliakou.c52_activitytracker.entity.User;
+import by.paliakou.c52_activitytracker.repository.ActivityEventRepository;
+import by.paliakou.c52_activitytracker.service.ActivityEventService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("activity")
+@RequestMapping("/activity")
 public class ActivityEventController {
+
+    @Autowired
+    ActivityEventService activityEventService;
+
+    @Autowired
+    ActivityEventRepository activityEventRepository;
+
+    public ResponseEntity<ActivityEvent> badRequest() {
+        return ResponseEntity.badRequest().build();
+    }
+
+    @PostMapping
+    public ResponseEntity<ActivityEvent> saveActivityEvent(@RequestBody ActivityEvent activityEvent){
+        ActivityEvent newActivityEvent = activityEventService.save(activityEvent);
+        return new ResponseEntity<>(newActivityEvent, HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    public List<ActivityEvent> findAll(){
+        return activityEventRepository.findAll();
+    }//?????
+
+    @GetMapping("/{user}")
+    public ResponseEntity<ActivityEvent> findActivityEventsByUser (@PathVariable User user){
+        Optional<ActivityEvent> activityEventByUser = activityEventService.findActivityEventByUser(user);
+        if (activityEventByUser.isPresent()){
+            return ResponseEntity.ok(activityEventByUser.get());
+        }
+        return badRequest();
+    }
+
+    @GetMapping("/{type}")
+    public ResponseEntity<ActivityEvent> findActivityEventsByTypeOfActivity
+            (@PathVariable TypeOfActivity type){
+        Optional<ActivityEvent> activityEventByType = activityEventService.findActivityEventByType(type);
+        if (activityEventByType.isPresent()){
+            return ResponseEntity.ok(activityEventByType.get());
+        }
+        return badRequest();
+    }
+
+    @GetMapping("/{distance}")
+    public ResponseEntity<ActivityEvent> findActivityEventsByDistance(@PathVariable int distance){
+        Optional<ActivityEvent> activityEventByDistance =
+                activityEventService.findActivityEventByDistance(distance);
+        if (activityEventByDistance.isPresent()){
+            return ResponseEntity.ok(activityEventByDistance.get());
+        }
+        return badRequest();
+    }
+
+    @GetMapping("/{speed}")
+    public ResponseEntity<ActivityEvent> findActivityEventsBySpeed(@PathVariable int speed){
+        Optional<ActivityEvent> activityEventBySpeed = activityEventService.findActivityEventBySpeed(speed);
+        if (activityEventBySpeed.isPresent()){
+            return ResponseEntity.ok(activityEventBySpeed.get());
+        }
+        return badRequest();
+    }
+
+    @GetMapping("/{activityPulse}")
+    public ResponseEntity<ActivityEvent> findActivityEventsByPulse(@PathVariable int activityPulse){
+        Optional<ActivityEvent> activityEventByPulse = activityEventService.findActivityEventByPulse(activityPulse);
+        if (activityEventByPulse.isPresent()){
+            return ResponseEntity.ok(activityEventByPulse.get());
+        }
+        return badRequest();
+    }
+
+    @GetMapping("/{activityEnergy}")
+    public ResponseEntity<ActivityEvent> findActivityEventsByEnergy(@PathVariable int activityEnergy){
+        Optional<ActivityEvent> activityEventByEnergy = activityEventService.findActivityEventByEnergy(activityEnergy);
+        if (activityEventByEnergy.isPresent()){
+            return ResponseEntity.ok(activityEventByEnergy.get());
+        }
+        return badRequest();
+    }
 }

@@ -5,7 +5,7 @@ import by.paliakou.c52_activitytracker.repository.SleepEventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SleepEventService {
@@ -17,20 +17,19 @@ public class SleepEventService {
         return sleepEventRepository.save(sleepEvent);
     }
 
-    public List<SleepEvent> findAllSleepEventsByUser(User user){
-        return sleepEventRepository.findAllSleepEventsByUser(user);
-    }
-
-    public List<SleepEvent> findAllSleepEventsByUserAndStageOfSleep(User user,
-                                                                            StageOfSleep stageOfSleep){
-        return sleepEventRepository.findAllSleepEventsByUserAndStageOfSleep(user, stageOfSleep);
-    }
-
-    public List<SleepEvent> findAllSleepEventsByUserAndRating(User user, int rating){
-        return sleepEventRepository.findAllSleepEventsByUserAndRating(user, rating);
-    }
-
     public void deleteSleepEvent(Long id){
         sleepEventRepository.deleteById(id);
     }
+
+    public Optional<SleepEvent> findSleepEventsByStage(StageOfSleep stage) {
+        return sleepEventRepository.findSleepEventsByStage(stage);
+    }
+
+    public Optional<SleepEvent> findSleepEventsByRating(int rating) {
+        return sleepEventRepository.findSleepEventsByRating(rating);
+    }
+
+    public Optional<SleepEvent> findSleepEventById(Long id) {
+        return sleepEventRepository.findById(id);
+    }//???
 }

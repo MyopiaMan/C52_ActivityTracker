@@ -22,7 +22,8 @@ public class SleepEvent {
     private LocalDateTime sleepStartTime;
     private LocalDateTime sleepFinishTime;
     @Enumerated(EnumType.STRING)
-    private StageOfSleep stageOfSleep;
+    private StageOfSleep stage;
+    private LocalDateTime stageStartTime;
     private int rating;
 
 }

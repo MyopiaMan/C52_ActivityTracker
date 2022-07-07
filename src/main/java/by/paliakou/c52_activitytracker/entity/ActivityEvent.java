@@ -21,11 +21,12 @@ public class ActivityEvent {
     @ManyToOne(cascade = CascadeType.ALL)
     private User user;
     @Enumerated(EnumType.STRING)
-    private TypeOfActivity typeOfActivity;
+    private TypeOfActivity type;
     private int purpose;
     private LocalDateTime activityStartTime;
     private LocalDateTime activityEndTime;
     private int repetitions;
+    private LocalDateTime repetitionStartTime;
     private int distance;
     private int speed;
     private int elevationGain;

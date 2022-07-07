@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ActivityEventService {
@@ -29,5 +30,29 @@ public class ActivityEventService {
 
     public void deleteActivityEvent(Long id){
         activityEventRepository.deleteById(id);
+    }
+
+    public Optional<ActivityEvent> findActivityEventByUser(User user) {
+        return activityEventRepository.findActivityEventByUser(user);
+    }
+
+    public Optional<ActivityEvent> findActivityEventByType(TypeOfActivity type) {
+        return activityEventRepository.findActivityEventByType(type);
+    }
+
+    public Optional<ActivityEvent> findActivityEventByDistance(int distance) {
+        return activityEventRepository.findActivityEventByDistance(distance);
+    }
+
+    public Optional<ActivityEvent> findActivityEventBySpeed(int speed) {
+        return activityEventRepository.findActivityEventBySpeed(speed);
+    }
+
+    public Optional<ActivityEvent> findActivityEventByPulse(int activityPulse) {
+        return activityEventRepository.findActivityEventByPulse(activityPulse);
+    }
+
+    public Optional<ActivityEvent> findActivityEventByEnergy(int activityEnergy) {
+        return activityEventRepository.findActivityEventByEnergy(activityEnergy);
     }
 }
