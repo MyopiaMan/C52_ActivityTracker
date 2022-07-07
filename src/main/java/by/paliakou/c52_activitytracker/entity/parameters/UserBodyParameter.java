@@ -21,8 +21,8 @@ public class UserBodyParameter {
     @ManyToOne(cascade = CascadeType.ALL)
     private User user;
     @Enumerated(EnumType.STRING)
-    private UserGender userGender;
-    private int userAge;
-    private BigDecimal userWeight;
-    private BigDecimal userHeight;
+    private UserGender gender;
+    private int age;
+    private BigDecimal weight;
+    private BigDecimal height;
 }

@@ -13,17 +13,19 @@ public interface UserBodyParameterRepository extends JpaRepository<UserBodyParam
 
     Optional<UserBodyParameter> findByUserGender(UserGender userGender);
 
-    List<UserBodyParameter> findAllUserBodyParametersByUser(User user);
-
-    List<UserBodyParameter> findAllUserBodyParametersByUserGender(UserGender userGender);
-
-    List<UserBodyParameter> findAllUserBodyParametersByUserGenderAndAge(UserGender userGender, int age);
-
-    List<UserBodyParameter> findAllUserBodyParametersByWeight(BigDecimal weight);
+//    List<UserBodyParameter> findAllUserBodyParametersByUser(User user);
+//
+//    List<UserBodyParameter> findAllUserBodyParametersByUserGender(UserGender userGender);
+//
+//    List<UserBodyParameter> findAllUserBodyParametersByUserGenderAndAge(UserGender userGender, int age);
+//
+//    List<UserBodyParameter> findAllUserBodyParametersByWeight(BigDecimal weight);
 
     Optional<UserBodyParameter> findUserBodyParametersByUserAge(int userAge);
 
     Optional<UserBodyParameter> findUserBodyParametersByUserWeight(BigDecimal userWeight);
 
     Optional<UserBodyParameter> findUserBodyParametersByUserHeight(BigDecimal userHeight);
+
+    Optional<UserBodyParameter> findUserBodyParametersByUserId(Long id);
 }

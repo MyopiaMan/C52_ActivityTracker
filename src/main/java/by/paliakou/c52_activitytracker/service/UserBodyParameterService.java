@@ -21,26 +21,6 @@ public class UserBodyParameterService {
         return userBodyParameterRepository.save(userBodyParameter);
     }
 
-    public List<UserBodyParameter> findAllUserBodyParametersByUser(User user){
-        return userBodyParameterRepository.findAllUserBodyParametersByUser(user);
-    }
-
-    public Optional<UserBodyParameter> findAllUserBodyParametersByUser (String username){
-        return userBodyParameterRepository.findByUsername(username);
-    }
-
-//    public List<UserBodyParameter> findAllUserBodyParametersByUserGender(UserGender userGender){
-//        return userBodyParameterRepository.findAllUserBodyParametersByUserGender(userGender);
-//    }
-//
-//    public List<UserBodyParameter> findAllUserBodyParametersByUserGenderAndAge(UserGender userGender, int age){
-//        return userBodyParameterRepository.findAllUserBodyParametersByUserGenderAndAge(userGender, age);
-//    }
-//
-//    public List<UserBodyParameter> findAllUserBodyParametersByWeight(BigDecimal weight){
-//        return userBodyParameterRepository.findAllUserBodyParametersByWeight(weight);
-//    }
-
     public void deleteUserBodyParameter(Long id){
         userBodyParameterRepository.deleteById(id);
     }
@@ -59,5 +39,9 @@ public class UserBodyParameterService {
 
     public Optional<UserBodyParameter> findUserBodyParametersByHeight(BigDecimal userHeight) {
         return userBodyParameterRepository.findUserBodyParametersByUserHeight(userHeight);
+    }
+
+    public Optional<UserBodyParameter> findBodyParametersById(Long id) {
+        return userBodyParameterRepository.findUserBodyParametersByUserId(id);
     }
 }
