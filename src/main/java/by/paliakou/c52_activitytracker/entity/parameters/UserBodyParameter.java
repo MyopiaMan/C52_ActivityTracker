@@ -22,7 +22,7 @@ public class UserBodyParameter {
     private User user;
     @Enumerated(EnumType.STRING)
     private UserGender userGender;
-    private int age;
-    private BigDecimal weight;
-    private BigDecimal height;
+    private int userAge;
+    private BigDecimal userWeight;
+    private BigDecimal userHeight;
 }

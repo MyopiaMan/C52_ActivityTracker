@@ -7,8 +7,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 public interface UserBodyParameterRepository extends JpaRepository<UserBodyParameter, Long> {
+
+    Optional<UserBodyParameter> findByUserGender(UserGender userGender);
 
     List<UserBodyParameter> findAllUserBodyParametersByUser(User user);
 
@@ -17,4 +20,10 @@ public interface UserBodyParameterRepository extends JpaRepository<UserBodyParam
     List<UserBodyParameter> findAllUserBodyParametersByUserGenderAndAge(UserGender userGender, int age);
 
     List<UserBodyParameter> findAllUserBodyParametersByWeight(BigDecimal weight);
+
+    Optional<UserBodyParameter> findUserBodyParametersByUserAge(int userAge);
+
+    Optional<UserBodyParameter> findUserBodyParametersByUserWeight(BigDecimal userWeight);
+
+    Optional<UserBodyParameter> findUserBodyParametersByUserHeight(BigDecimal userHeight);
 }

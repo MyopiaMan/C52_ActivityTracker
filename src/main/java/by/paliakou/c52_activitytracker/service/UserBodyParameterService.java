@@ -44,4 +44,20 @@ public class UserBodyParameterService {
     public void deleteUserBodyParameter(Long id){
         userBodyParameterRepository.deleteById(id);
     }
+
+    public Optional<UserBodyParameter> findUserBodyParametersByGender(UserGender userGender) {
+        return userBodyParameterRepository.findByUserGender(userGender);
+    }
+
+    public Optional<UserBodyParameter> findUserBodyParametersByAge(int userAge) {
+        return userBodyParameterRepository.findUserBodyParametersByUserAge(userAge);
+    }
+
+    public Optional<UserBodyParameter> findUserBodyParametersByWeight(BigDecimal userWeight) {
+        return userBodyParameterRepository.findUserBodyParametersByUserWeight(userWeight);
+    }
+
+    public Optional<UserBodyParameter> findUserBodyParametersByHeight(BigDecimal userHeight) {
+        return userBodyParameterRepository.findUserBodyParametersByUserHeight(userHeight);
+    }
 }
