@@ -23,22 +23,22 @@ public class UserHealthParameterService {
     }
 
     public Optional<UserHealthParameter> findHealthParamsByUser(User user) {
-        return userHealthParameterRepository.findHealthParametersByUser(user);
+        return userHealthParameterRepository.findByUser(user);
     }
 
     public Optional<UserHealthParameter> findHealthParamsByOxygenSaturation(int oxygenSaturation) {
-        return userHealthParameterRepository.findHealthParametersByOxygenSaturation(oxygenSaturation);
+        return userHealthParameterRepository.findByOxygenSaturation(oxygenSaturation);
     }
 
     public Optional<UserHealthParameter> findHealthParamsByBodyTemperature(BigDecimal bodyTemperature) {
-        return userHealthParameterRepository.findHealthParametersByBodyTemperature(bodyTemperature);
+        return userHealthParameterRepository.findByBodyTemperature(bodyTemperature);
     }
 
     public Optional<UserHealthParameter> findHealthParamsByPulse(int pulse) {
-        return userHealthParameterRepository.findHealthParametersByPulse(pulse);
+        return userHealthParameterRepository.findByPulse(pulse);
     }
 
     public Optional<UserHealthParameter> findHealthParametersById(Long id) {
-        return userHealthParameterRepository.findHealthParametersById(id);
+        return userHealthParameterRepository.findById(id);
     }
 }

@@ -22,14 +22,14 @@ public class SleepEventService {
     }
 
     public Optional<SleepEvent> findSleepEventsByStage(StageOfSleep stage) {
-        return sleepEventRepository.findSleepEventsByStage(stage);
+        return sleepEventRepository.findByStage(stage);
     }
 
     public Optional<SleepEvent> findSleepEventsByRating(int rating) {
-        return sleepEventRepository.findSleepEventsByRating(rating);
+        return sleepEventRepository.findByRating(rating);
     }
 
     public Optional<SleepEvent> findSleepEventById(Long id) {
         return sleepEventRepository.findById(id);
-    }//???
+    }
 }

@@ -1,6 +1,7 @@
 package by.paliakou.c52_activitytracker.entity.parameters;
 
 import by.paliakou.c52_activitytracker.entity.User;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import java.math.BigDecimal;
 @Data
 @Entity
 @Table(name = "healthParameters")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class UserHealthParameter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

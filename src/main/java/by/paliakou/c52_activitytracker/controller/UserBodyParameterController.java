@@ -4,6 +4,7 @@ import by.paliakou.c52_activitytracker.entity.UserGender;
 import by.paliakou.c52_activitytracker.entity.parameters.UserBodyParameter;
 import by.paliakou.c52_activitytracker.service.UserBodyParameterService;
 import by.paliakou.c52_activitytracker.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,7 @@ public class UserBodyParameterController {
         return ResponseEntity.badRequest().build();
     }
 
+    @Operation(summary = "Saving user's body parameters")
     @PostMapping
     public ResponseEntity<UserBodyParameter> saveBodyParameters
             (@RequestBody UserBodyParameter userBodyParameter){
@@ -33,55 +35,52 @@ public class UserBodyParameterController {
         return new ResponseEntity<>(newParam, HttpStatus.CREATED);
     }
 
-//    @GetMapping("/{username}")
-//    public ResponseEntity<UserBodyParameter> findBodyParametersByUser(@PathVariable String username){
-//
-//    }//delete
-
+    @Operation(summary = "Find body parameters by user's gender")
     @GetMapping("/{gender}")
-    public ResponseEntity<UserBodyParameter> findBodyParametersByUserGender
+    public ResponseEntity<UserBodyParameter> findByGender
             (@PathVariable UserGender gender){
         Optional<UserBodyParameter> paramsByGender =
                 usBodyParamService.findUserBodyParametersByGender(gender);
         if (paramsByGender.isPresent()){
             return ResponseEntity.ok(paramsByGender.get());
         }
-//        return ResponseEntity.badRequest().build();
         return badRequest();
     }
 
+    @Operation(summary = "Find body parameters by user's age")
     @GetMapping("/{age}")
-    public ResponseEntity<UserBodyParameter> findBodyParametersByUserAge(@PathVariable int age){
+    public ResponseEntity<UserBodyParameter> findByAge(@PathVariable int age){
         Optional<UserBodyParameter> paramsByAge =
                 usBodyParamService.findUserBodyParametersByAge(age);
         if (paramsByAge.isPresent()){
             return ResponseEntity.ok(paramsByAge.get());
         }
-//        return ResponseEntity.badRequest().build();
         return badRequest();
     }
 
+    @Operation(summary = "Find body parameters by user's weight")
     @GetMapping("/{weight}")
-    public ResponseEntity<UserBodyParameter> findBodyParametersByUserWeight(@PathVariable BigDecimal weight){
+    public ResponseEntity<UserBodyParameter> findByWeight(@PathVariable BigDecimal weight){
         Optional<UserBodyParameter> paramsByWeight =
                 usBodyParamService.findUserBodyParametersByWeight(weight);
         if (paramsByWeight.isPresent()){
             return ResponseEntity.ok(paramsByWeight.get());
         }
-        return ResponseEntity.badRequest().build();
+        return badRequest();
     }
 
+    @Operation(summary = "Find body parameters by user's height")
     @GetMapping("/{height}")
-    public ResponseEntity<UserBodyParameter> findBodyParametersByUserHeight(@PathVariable BigDecimal height){
+    public ResponseEntity<UserBodyParameter> findByHeight(@PathVariable BigDecimal height){
         Optional<UserBodyParameter> paramsByHeight =
                 usBodyParamService.findUserBodyParametersByHeight(height);
         if (paramsByHeight.isPresent()){
             return ResponseEntity.ok(paramsByHeight.get());
         }
-//        return ResponseEntity.badRequest().build();
         return badRequest();
     }
 
+    @Operation(summary = "User's age update")
     @PutMapping("/ageUpdate/{id}")
     public ResponseEntity<UserBodyParameter> ageUpdate
             (@RequestBody UserBodyParameter userBodyParameter, @PathVariable Long id){
@@ -91,10 +90,10 @@ public class UserBodyParameterController {
             UserBodyParameter userAgeUpdate = usBodyParamService.save(userBodyParameter);
             return ResponseEntity.ok(userAgeUpdate);
         }
-//        return ResponseEntity.badRequest().build();
         return badRequest();
     }
 
+    @Operation(summary = "User's height update")
     @PutMapping("/heightUpdate/{id}")
     public ResponseEntity<UserBodyParameter> heightUpdate
             (@RequestBody UserBodyParameter userBodyParameter, @PathVariable Long id){
@@ -104,10 +103,10 @@ public class UserBodyParameterController {
             UserBodyParameter userHeightUpdate = usBodyParamService.save(userBodyParameter);
             return ResponseEntity.ok(userHeightUpdate);
         }
-//        return ResponseEntity.badRequest().build();
         return badRequest();
     }
 
+    @Operation(summary = "User's weight update")
     @PutMapping("/weightUpdate/{id}")
     public ResponseEntity<UserBodyParameter> weightUpdate
             (@RequestBody UserBodyParameter userBodyParameter, @PathVariable Long id){
@@ -117,10 +116,10 @@ public class UserBodyParameterController {
             UserBodyParameter userWeightUpdate = usBodyParamService.save(userBodyParameter);
             return ResponseEntity.ok(userWeightUpdate);
         }
-//        return ResponseEntity.badRequest().build();
         return badRequest();
     }
 
+    @Operation(summary = "Deleting all parameters of the user's body")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteBodyParameters(@PathVariable Long id){
         usBodyParamService.deleteUserBodyParameter(id);

@@ -1,11 +1,13 @@
 package by.paliakou.c52_activitytracker.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 @AllArgsConstructor
@@ -13,6 +15,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "sleepEvents")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SleepEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,5 +28,4 @@ public class SleepEvent {
     private StageOfSleep stage;
     private LocalDateTime stageStartTime;
     private int rating;
-
 }

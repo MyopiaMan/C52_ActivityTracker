@@ -3,6 +3,7 @@ package by.paliakou.c52_activitytracker.controller;
 import by.paliakou.c52_activitytracker.entity.User;
 import by.paliakou.c52_activitytracker.entity.parameters.UserHealthParameter;
 import by.paliakou.c52_activitytracker.service.UserHealthParameterService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ public class UserHealthParameterController {
     @Autowired
     UserHealthParameterService usHealthParamService;
 
+    @Operation(summary = "Save user's health parameters")
     @PostMapping
     public ResponseEntity<UserHealthParameter> saveHealthParameters
             (@RequestBody UserHealthParameter usHealthParam){
@@ -25,6 +27,7 @@ public class UserHealthParameterController {
         return new ResponseEntity<>(newParam, HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Find user's health parameters")
     @GetMapping("/{user}")
     public ResponseEntity<UserHealthParameter> findHealthParamsByUser (@PathVariable User user){
         Optional<UserHealthParameter> healthParamsByUser =
@@ -35,6 +38,7 @@ public class UserHealthParameterController {
         return ResponseEntity.badRequest().build();
     }
 
+    @Operation(summary = "Find health parameters by user's blood oxygen saturation")
     @GetMapping("/{oxygenSaturation}")
     public ResponseEntity<UserHealthParameter> findHealthParamsByOxygenSaturation (@PathVariable int oxygenSaturation){
         Optional<UserHealthParameter> paramsByOxygenSaturation =
@@ -45,6 +49,7 @@ public class UserHealthParameterController {
         return ResponseEntity.badRequest().build();
     }
 
+    @Operation(summary = "Find health parameters by user's body temperature")
     @GetMapping("/{bodyTemperature}")
     public ResponseEntity<UserHealthParameter> findHealthParamsByBodyTemperature
             (@PathVariable BigDecimal bodyTemperature){
@@ -56,6 +61,7 @@ public class UserHealthParameterController {
         return ResponseEntity.badRequest().build();
     }
 
+    @Operation(summary = "Find health parameters by user's pulse")
     @GetMapping("/{pulse}")
     public ResponseEntity<UserHealthParameter> findHealthParamsByBodyPulse(@PathVariable int pulse){
         Optional<UserHealthParameter> paramsByPulse = usHealthParamService.findHealthParamsByPulse(pulse);
@@ -65,6 +71,7 @@ public class UserHealthParameterController {
         return ResponseEntity.badRequest().build();
     }
 
+    @Operation(summary = "Updating the oxygen saturation in the user's blood")
     @PutMapping("/oxygenUpdate/{id}")
     public ResponseEntity<UserHealthParameter> oxygenUpdate
             (@RequestBody UserHealthParameter userHealthParameter, @PathVariable Long id){
@@ -77,6 +84,7 @@ public class UserHealthParameterController {
         return ResponseEntity.badRequest().build();
     }
 
+    @Operation(summary = "User's body temperature update")
     @PutMapping("/temperatureUpdate/{id}")
     public ResponseEntity<UserHealthParameter> temperatureUpdate
             (@RequestBody UserHealthParameter userHealthParameter, @PathVariable Long id){
@@ -89,6 +97,7 @@ public class UserHealthParameterController {
         return ResponseEntity.badRequest().build();
     }
 
+    @Operation(summary = "User's heart settings update")
     @PutMapping("/pulseUpdate/{id}")
     public ResponseEntity<UserHealthParameter> pulseUpdate
             (@RequestBody UserHealthParameter userHealthParameter, @PathVariable Long id){
@@ -103,6 +112,7 @@ public class UserHealthParameterController {
         return ResponseEntity.badRequest().build();
     }
 
+    @Operation(summary = "Deleting all parameters of the user's health")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteHealthParameters(@PathVariable Long id){
         usHealthParamService.deleteUserHealthParameter(id);

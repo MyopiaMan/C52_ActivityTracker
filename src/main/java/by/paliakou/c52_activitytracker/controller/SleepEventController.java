@@ -4,6 +4,7 @@ import by.paliakou.c52_activitytracker.entity.SleepEvent;
 import by.paliakou.c52_activitytracker.entity.StageOfSleep;
 import by.paliakou.c52_activitytracker.repository.SleepEventRepository;
 import by.paliakou.c52_activitytracker.service.SleepEventService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,17 +27,20 @@ public class SleepEventController {
     @Autowired
     SleepEventRepository sleepEventRepository;
 
+    @Operation(summary = "Save user's sleep parameters")
     @PostMapping
     public ResponseEntity<SleepEvent> saveSleepParameters(@RequestBody SleepEvent sleepEvent){
         SleepEvent newSleepEvent = sleepEventService.save(sleepEvent);
         return new ResponseEntity<>(newSleepEvent, HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Find all user's sleep parameters")
     @GetMapping
     public List<SleepEvent> findAll(){
         return sleepEventRepository.findAll();
     }//?????
 
+    @Operation(summary = "Find user's sleep parameters by stage of sleep")
     @GetMapping("/{stage}")
     public ResponseEntity<SleepEvent> findSleepEventsByStage(@PathVariable StageOfSleep stage){
         Optional<SleepEvent> sleepEventsByStage = sleepEventService.findSleepEventsByStage(stage);
@@ -46,6 +50,7 @@ public class SleepEventController {
         return badRequest();
     }
 
+    @Operation(summary = "Find user's sleep parameters by rating of sleep")
     @GetMapping("/{rating}")
     public ResponseEntity<SleepEvent> findSleepEventsByRating(@PathVariable int rating){
         Optional<SleepEvent> sleepEventsByRating = sleepEventService.findSleepEventsByRating(rating);
@@ -55,6 +60,7 @@ public class SleepEventController {
         return badRequest();
     }
 
+    @Operation(summary = "Update all user's sleep parameters")
     @PutMapping("/eventUpdate/{id}")
     public ResponseEntity<SleepEvent> eventUpdate
             (@RequestBody SleepEvent sleepEvent, @PathVariable Long id){
@@ -71,6 +77,7 @@ public class SleepEventController {
         return badRequest();
     }
 
+    @Operation(summary = "Update stage of sleep")
     @PutMapping("/stageUpdate/{id}")
     public ResponseEntity<SleepEvent> stageUpdate
             (@RequestBody SleepEvent sleepEvent, @PathVariable Long id){
@@ -84,6 +91,7 @@ public class SleepEventController {
         return badRequest();
     }
 
+    @Operation(summary = "Delete all user's sleep parameters")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteSleepEvent(@PathVariable Long id){
         sleepEventService.deleteSleepEvent(id);

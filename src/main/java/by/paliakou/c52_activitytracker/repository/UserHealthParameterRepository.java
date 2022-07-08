@@ -10,13 +10,11 @@ import java.util.Optional;
 
 public interface UserHealthParameterRepository extends JpaRepository<UserHealthParameter, Long> {
 
-    Optional<UserHealthParameter> findHealthParametersByUser(User user);
+    Optional<UserHealthParameter> findByUser(User user);
 
-    Optional<UserHealthParameter> findHealthParametersByOxygenSaturation(int oxygenSaturation);
+    Optional<UserHealthParameter> findByOxygenSaturation(int oxygenSaturation);
 
-    Optional<UserHealthParameter> findHealthParametersByBodyTemperature(BigDecimal bodyTemperature);
+    Optional<UserHealthParameter> findByBodyTemperature(BigDecimal bodyTemperature);
 
-    Optional<UserHealthParameter> findHealthParametersByPulse(int pulse);
-
-    Optional<UserHealthParameter> findHealthParametersById(Long id);
+    Optional<UserHealthParameter> findByPulse(int pulse);
 }

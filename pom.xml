@@ -32,6 +32,11 @@
         </dependency>
 <!--        <dependency>-->
 <!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-validation</artifactId>-->
+<!--        </dependency>-->
+<!--        Doesn't work in starter-parent version 2.4.3-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
 <!--            <artifactId>spring-boot-starter-thymeleaf</artifactId>-->
 <!--        </dependency>-->
 <!--        <dependency>-->

@@ -1,5 +1,6 @@
 package by.paliakou.c52_activitytracker.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "activityEvents")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ActivityEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,11 +27,12 @@ public class ActivityEvent {
     private int purpose;
     private LocalDateTime activityStartTime;
     private LocalDateTime activityEndTime;
-    private int repetitions;
-    private LocalDateTime repetitionStartTime;
     private int distance;
     private int speed;
     private int elevationGain;
-    private BigDecimal activeEnergy;
+    private BigDecimal activityEnergy;
     private int activityPulse;
+    private int repetitions;
+    private LocalDateTime repetitionStartTime;
+    private BigDecimal repetitionEnergy;
 }

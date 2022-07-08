@@ -5,13 +5,11 @@ import by.paliakou.c52_activitytracker.entity.TypeOfActivity;
 import by.paliakou.c52_activitytracker.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
 public interface ActivityEventRepository extends JpaRepository<ActivityEvent, Long> {
-    List<ActivityEvent> findAllActivityEventsByUser(User user);
-
-    List<ActivityEvent> findAllActivityEventsByUserAndTypeOfActivity(User user, TypeOfActivity typeOfActivity);
 
     Optional<ActivityEvent> findActivityEventByUser(User user);
 
@@ -21,8 +19,7 @@ public interface ActivityEventRepository extends JpaRepository<ActivityEvent, Lo
 
     Optional<ActivityEvent> findActivityEventBySpeed(int speed);
 
-    Optional<ActivityEvent> findActivityEventByPulse(int activityPulse);
+    Optional<ActivityEvent> findActivityEventByActivityPulse(int activityPulse);
 
-    Optional<ActivityEvent> findActivityEventByEnergy(int activityEnergy);
-
+    Optional<ActivityEvent> findActivityEventByActivityEnergy(BigDecimal activityEnergy);
 }

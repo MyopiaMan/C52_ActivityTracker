@@ -7,6 +7,7 @@ import by.paliakou.c52_activitytracker.repository.ActivityEventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,15 +18,6 @@ public class ActivityEventService {
 
     public ActivityEvent save(ActivityEvent activityEvent){
         return activityEventRepository.save(activityEvent);
-    }
-
-    public List<ActivityEvent> findAllActivityEventsByUser(User user){
-        return activityEventRepository.findAllActivityEventsByUser(user);
-    }
-
-    public List<ActivityEvent> findAllActivityEventsByUserAndTypeOfActivity(User user,
-                                                                            TypeOfActivity typeOfActivity){
-        return activityEventRepository.findAllActivityEventsByUserAndTypeOfActivity(user, typeOfActivity);
     }
 
     public void deleteActivityEvent(Long id){
@@ -48,11 +40,15 @@ public class ActivityEventService {
         return activityEventRepository.findActivityEventBySpeed(speed);
     }
 
-    public Optional<ActivityEvent> findActivityEventByPulse(int activityPulse) {
-        return activityEventRepository.findActivityEventByPulse(activityPulse);
+    public Optional<ActivityEvent> findActivityEventByActivityPulse(int activityPulse) {
+        return activityEventRepository.findActivityEventByActivityPulse(activityPulse);
     }
 
-    public Optional<ActivityEvent> findActivityEventByEnergy(int activityEnergy) {
-        return activityEventRepository.findActivityEventByEnergy(activityEnergy);
+    public Optional<ActivityEvent> findActivityEventByEnergy(BigDecimal activityEnergy) {
+        return activityEventRepository.findActivityEventByActivityEnergy(activityEnergy);
     }
+
+    public Optional<ActivityEvent> findActivityEventById(Long id) {
+        return activityEventRepository.findById(id);
+    }//???
 }

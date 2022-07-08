@@ -11,21 +11,13 @@ import java.util.Optional;
 
 public interface UserBodyParameterRepository extends JpaRepository<UserBodyParameter, Long> {
 
-    Optional<UserBodyParameter> findByUserGender(UserGender userGender);
+    Optional<UserBodyParameter> findByGender(UserGender gender);
 
-//    List<UserBodyParameter> findAllUserBodyParametersByUser(User user);
-//
-//    List<UserBodyParameter> findAllUserBodyParametersByUserGender(UserGender userGender);
-//
-//    List<UserBodyParameter> findAllUserBodyParametersByUserGenderAndAge(UserGender userGender, int age);
-//
-//    List<UserBodyParameter> findAllUserBodyParametersByWeight(BigDecimal weight);
+    Optional<UserBodyParameter> findByAge(int age);
 
-    Optional<UserBodyParameter> findUserBodyParametersByUserAge(int userAge);
+    Optional<UserBodyParameter> findByWeight(BigDecimal weight);
 
-    Optional<UserBodyParameter> findUserBodyParametersByUserWeight(BigDecimal userWeight);
+    Optional<UserBodyParameter> findByHeight(BigDecimal height);
 
-    Optional<UserBodyParameter> findUserBodyParametersByUserHeight(BigDecimal userHeight);
-
-    Optional<UserBodyParameter> findUserBodyParametersByUserId(Long id);
+    Optional<UserBodyParameter> findByUserId(Long id);
 }

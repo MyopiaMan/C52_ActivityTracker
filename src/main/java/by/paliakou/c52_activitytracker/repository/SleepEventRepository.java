@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface SleepEventRepository extends JpaRepository<SleepEvent, Long> {
 
-    Optional<SleepEvent> findSleepEventsByStage(StageOfSleep stage);
+    Optional<SleepEvent> findByStage(StageOfSleep stage);
 
-    Optional<SleepEvent> findSleepEventsByRating(int rating);
+    Optional<SleepEvent> findByRating(int rating);
 }
